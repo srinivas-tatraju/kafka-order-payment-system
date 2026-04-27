@@ -38,4 +38,11 @@ public class OrderController {
 
         return "Order created and event sent";
     }
+
+    // Just to test idempotency
+    @PostMapping("/resend")
+    public String resend(@RequestBody OrderEvent event) {
+        producer.sendOrderEvent(event);
+        return "Event resent";
+    }
 }

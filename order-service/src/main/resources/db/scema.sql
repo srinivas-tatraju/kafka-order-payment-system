@@ -1,0 +1,13 @@
+CREATE TABLE IF NOT EXISTS orders
+(
+    id      BIGSERIAL PRIMARY KEY,
+    product VARCHAR(255),
+    amount  DOUBLE PRECISION
+);
+
+
+CREATE TABLE IF NOT EXISTS processed_events
+(
+    order_id     BIGINT PRIMARY KEY,
+    processed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
