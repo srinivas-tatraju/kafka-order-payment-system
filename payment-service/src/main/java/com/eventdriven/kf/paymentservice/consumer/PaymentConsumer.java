@@ -1,10 +1,12 @@
 package com.eventdriven.kf.paymentservice.consumer;
 
 import com.eventdriven.kf.paymentservice.dto.OrderEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class PaymentConsumer {
 
     @KafkaListener(
@@ -13,16 +15,16 @@ public class PaymentConsumer {
     )
     public void consume(OrderEvent event) {
 
-        System.out.println("🔥 Received Order Event:");
-        System.out.println("OrderId: " + event.getOrderId());
-        System.out.println("Product: " + event.getProduct());
-        System.out.println("Amount: " + event.getAmount());
+        log.info("Received Order Event:");
+        log.info("OrderId: " + event.getOrderId());
+        log.info("Product: " + event.getProduct());
+        log.info("Amount: " + event.getAmount());
 
         // Simulate payment processing
         processPayment(event);
     }
 
     private void processPayment(OrderEvent event) {
-        System.out.println("💰 Processing payment for Order: " + event.getOrderId());
+        log.info("Processing payment for Order: " + event.getOrderId());
     }
 }
